@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}My Notes{% endblock %}
+{% block content %} 
+<main>
+       <center>
+            <a href="{{ url_for('notes.create_note') }}">
+                <button type="button">create Notes</button>
+            </a>
+       </center>
+        {% for note in notes %}
+            <div>
+                <h3>{{note.title}}</h3>
+                <p>{{note.content}}</p>
+                <small>{{note.created_at}}</small>
+            </div>
+        {% endfor %}
+</main>
+
+
+{% endblock %}

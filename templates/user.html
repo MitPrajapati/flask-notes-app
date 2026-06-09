@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{%  block title %} View_User {% endblock %}
+{% block content %}
+
+<h2>Database  All User</h2>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Email</th>
+        <th>Password</th>
+    </tr>
+    {% for users in user %}
+    <tr>
+        <td>{{users.id}}</td>
+        <td>{{users.username}}</td>
+        <td>{{users.password}}</td>
+    </tr>
+    {% endfor %}
+</table>    
+    
+{% endblock %}

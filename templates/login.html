@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %} Login Page {% endblock %}
+{% block content %}
+<main class="auth-page">
+    <section class="login-card">
+        <div class="login-header">
+            <span class="login-badge">Notes App</span>
+            <h1>Welcome back</h1>
+            <p>Sign in to create and manage your notes.</p>
+        </div>
+
+        <form action="" method="post" class="login-form">
+            {{ form.hidden_tag() }}
+
+            <div class="form-group">
+                {{ form.username.label }}
+                {{ form.username(autocomplete="off", placeholder="Enter username") }}
+            </div>
+
+            <div class="form-group">
+                {{ form.password.label }}
+                {{ form.password(placeholder="Enter password") }}
+            </div>
+
+            <button type="submit" class="login-button">Login</button>
+        </form>
+
+        <p class="auth-link">
+            New here?
+            <a href="{{ url_for('auth.register') }}">Create an account</a>
+        </p>
+    </section>
+</main>
+{% endblock %}

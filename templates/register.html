@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block title %} Registration {% endblock %}
+{% block content %}
+<main class="auth-page">
+    <section class="login-card">
+        <div class="login-header">
+            <span class="login-badge">Notes App</span>
+            <h1>Create account</h1>
+            <p>Register to start saving your notes in one place.</p>
+        </div>
+
+        <form method="POST" class="login-form">
+            {{ form.hidden_tag() }}
+
+            <div class="form-group">
+                {{ form.username.label }}
+                {{ form.username(autocomplete="off", placeholder="Choose username") }}
+            </div>
+
+            <div class="form-group">
+                {{ form.email.label }}
+                {{ form.email(autocomplete="off", placeholder="Enter email") }}
+            </div>
+
+            <div class="form-group">
+                {{ form.password.label }}
+                {{ form.password(placeholder="Create password") }}
+            </div>
+
+            <button type="submit" class="login-button">Register</button>
+        </form>
+
+        <p class="auth-link">
+            Already registered?
+            <a href="{{ url_for('auth.login') }}">Login here</a>
+        </p>
+    </section>
+</main>
+
+{% endblock %}
