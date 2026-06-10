@@ -8,6 +8,8 @@ A simple Notes Application built using Flask.
 - User Login
 - Create Notes
 - View Notes
+- Edit Notes
+- Delete Notes
 - Session-based Authentication
 
 ## Technologies Used
@@ -25,10 +27,10 @@ Currently implemented:
 - Authentication (Login/Register)
 - Note Creation
 - Note Viewing
-
-Planned features:
 - Edit Notes
 - Delete Notes
+
+
 
 
 
