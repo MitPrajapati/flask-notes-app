@@ -1,20 +1,22 @@
 {% extends 'base.html' %}
 {% block title %}My Notes{% endblock %}
-{% block content %} 
+{% block content %}
 <main>
-       <center>
-            <a href="{{ url_for('notes.create_note') }}">
-                <button type="button">create Notes</button>
-            </a>
-       </center>
-        {% for note in notes %}
-            <div>
-                <h3>{{note.title}}</h3>
-                <p>{{note.content}}</p>
-                <small>{{note.created_at}}</small>
-            </div>
-        {% endfor %}
+    <center>
+        <a href="{{ url_for('notes.create_note') }}">
+            <button type="button">create Notes</button>
+        </a>
+    </center>
+    {% for note in notes %}
+    <div>
+        <h3>{{note.title}}</h3>
+        <p>{{note.content}}</p>
+        <a href="{{ url_for('notes.edit', note_id=note.id) }}"> <button type="submit">Edit</button></a>
+        <form action="{{ url_for('notes.delete', note_id=note.id) }}" method="POST">
+            <button type="submit">Delete</button>
+        </form> <small>{{note.created_at}}</small>
+    </div>
+    {% endfor %}
 </main>
-
 
 {% endblock %}
