@@ -1,6 +1,7 @@
 from flask import Blueprint,flash,render_template,redirect,url_for,session,request
 from app.forms import registerForm,LoginForm
-from app.models import User,Note
+from app.models import User
+from werkzeug.security import generate_password_hash,check_password_hash
 from app import db
 
 auth_bp = Blueprint('auth',__name__)
@@ -12,11 +13,12 @@ def register():
         username = form.username.data
         email = form.email.data
         password = form.password.data
+        hashed_password = generate_password_hash(password)
         existing_user = User.query.filter_by(email=email).first()
         if existing_user:
             flash('Email already registered')
             return render_template('register.html',form=form)
-        new_user = User(username=username,email=email,password=password)
+        new_user = User(username=username,email=email,password=hashed_password)
         db.session.add(new_user)
         db.session.commit()
         flash('Registration Successful','success')
@@ -31,7 +33,7 @@ def login():
         username = form.username.data
         password = form.password.data
         user = User.query.filter_by(username=username).first()
-        if user and user.password == password:
+        if user and check_password_hash(user.password,password):
             session['user_id'] = user.id
             flash('Login Successful','success')
             return redirect(url_for('notes.view_notes'))
